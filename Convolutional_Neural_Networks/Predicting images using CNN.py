@@ -35,7 +35,8 @@ classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = [
 # importing the required module
 from keras.preprocessing.image import ImageDataGenerator
 
-# we are using in total of 10,000 images for both testing and training which is not much. So we are using the technique of image augmentaion to reduce overfitting
+# we are using in total of 10,000 images for both testing and training which is not much, 
+# So we are using the technique of image augmentaion to reduce overfitting
 train_datagen = ImageDataGenerator(
         rescale=1./255,
         shear_range=0.2,
@@ -43,7 +44,7 @@ train_datagen = ImageDataGenerator(
         horizontal_flip=True
         )
 
-#transforming pixels (0-255) to 0's and 1's
+#transforming pixels (0 to 255) to (0 to 1)
 test_datagen = ImageDataGenerator(rescale=1./255)
 
 #Generating training data
@@ -75,7 +76,8 @@ classifier.fit_generator(
 
 import numpy as np
 from keras.preprocessing import image
-test_image = image.load_img("dataset\single_prediction\cat_or_dog_1.jpg", target_size =(64, 64))
+test_image = image.load_img("dataset\single_prediction\cat_or_dog_1.jpg", 
+                            target_size =(64, 64))
 test_image = image.img_to_array(test_image) # to convert the image into a 2D array
 test_image = np.expand_dims(test_image, axis = 0) # gives the batch size, in this case it will be one since we are inputting only one image
 result = classifier.predict(test_image)

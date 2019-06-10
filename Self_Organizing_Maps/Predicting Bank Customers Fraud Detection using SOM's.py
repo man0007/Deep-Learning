@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 # Importing the dataframe as df
-dataset = pd.read_csv("D:\documents\Python\Deep-Learning-A-Z\Self_Organizing_Maps\Mega_Case_Study\Credit_Card_Applications.csv")
+dataset = pd.read_csv("Credit_Card_Applications.csv")
 X = dataset.iloc[:, :-1].values
 y = dataset.iloc[:, -1].values
 
@@ -40,7 +40,8 @@ show()
 
 # Finding the frauds
 mappings = som.win_map(X)
-frauds = np.concatenate((mappings[(6,5)],mappings[(7,7)]), axis = 0)
+
+frauds = np.concatenate((mappings[(8,1)],mappings[(6,8)]), axis = 0)
 frauds = sc.inverse_transform(frauds)
 
 ############# Part-2 Finding the probability of fraud usin ANN ################

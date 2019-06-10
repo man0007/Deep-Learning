@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Importing the training set
-dataset_train = pd.read_csv('D:\documents\Python\Deep-Learning-A-Z\Recurrent_Neural_Networks\Google_Stock_Price_Train.csv')
+dataset_train = pd.read_csv('Google_Stock_Price_Train.csv')
 training_set = dataset_train.iloc[:,1:2].values
 
 # Feature Scaling
@@ -24,6 +24,7 @@ X_train, y_train =  np.array(X_train),np.array(y_train)
 
 # Reshaping (3Dimension)
 X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1],1)) # batch size (1198), time stamp (60), number of feature (1) i.e open price
+
 
 ########################## Part-2 Building the RNN ############################
 
@@ -64,7 +65,7 @@ regressor.fit(X_train, y_train, epochs = 100, batch_size = 32)
 ################ Part-3 Making Predictions and Visualisation ##################
 
 # Getting the real stock price of 2017
-dataset_test = pd.read_csv('D:\documents\Python\Deep-Learning-A-Z\Recurrent_Neural_Networks\Google_Stock_Price_Test.csv')
+dataset_test = pd.read_csv('Google_Stock_Price_Test.csv')
 real_stock_price = dataset_test.iloc[:,1:2].values
 
 # Getting the predicted stock price of 2017
@@ -89,7 +90,7 @@ plt.plot(real_stock_price, color = 'red', label = 'Real Google Stock Price for J
 plt.plot(predicted_stock_price, color = 'blue', label = 'Predicted Google Stock Price for Jan 2017')
 plt.title('Google Stock Price Prediction')
 plt.xlabel('Time')
-plt.ylabel('Google Stock price')
+plt.ylabel('Google open Stock price')
 plt.legend()
 plt.show()
 plt.savefig('stock_prediction.png')
